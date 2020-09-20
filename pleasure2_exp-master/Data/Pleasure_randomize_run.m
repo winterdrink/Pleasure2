@@ -111,7 +111,7 @@ new_runs_randomized(64,:) = Runs_randomized(36,:);
 new_runs_randomized(65,:) = Runs_randomized(48,:);
 new_runs_randomized(66,:) = Runs_randomized(60,:);
 
-save('Pleasure_randomized_run_data_final.mat','new_runs_randomized');
+save('Pleasure2_randomized_run_data_final.mat','new_runs_randomized');
 
 
 %% Second half (part2)

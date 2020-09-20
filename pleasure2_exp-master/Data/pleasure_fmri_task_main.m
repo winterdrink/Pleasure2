@@ -77,7 +77,7 @@ end
 
 %% SETUP : Create paradigm according to subject information
  
-run_dur = 5;  % including disdaq(10s), except 8 secs before trigger
+run_dur = 870;  % including disdaq(10s), except 8 secs before trigger
 
 rating_types_pls = call_ratingtypes_pls;
 
