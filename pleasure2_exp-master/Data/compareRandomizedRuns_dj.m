@@ -1,33 +1,89 @@
-datdir = '/Users/dongjupark/Dropbox/Pleasure2_codes/pleasure2_exp-master';
+datdir = '/Users/dongjupark/Dropbox/Pleasure2_codes/pleasure2_exp-master/Data';
 rorderlist = dir(datdir);
-rordernames = {rorderlist.name}';
 rordernames = filenames(fullfile(datdir, '*_randomized_run_data*.mat'));
-rorderopen = (cellstr(["Runs_randomized" "Runs_randomized2" "new_runs_randomized2"]));
 
 for r = 1:length(rordernames)
     load(rordernames{r})
-    if isequal(r, or(1,4))
+    if r==1||5
         R = Runs_randomized;
-    elseif isequal(r, or(2,5))
-        R = Runs_randomized2;
-    else
-        R = new_runs_randomized2;
-    for i = 1:59
-        iswhile = 0;
-        while iswhile == 0
+        same = [];
+        same = num2cell(same);
+        n = 0;
+        m = 0;
+        for i = 1:60
+            for ii = 1:60
             for j = 1:5
-                if isequal(R{i,j}, R{i+1, j})==0
-                    iswhile = 1;
+                if isequal(R{i,j}, R{ii, j})==1
+                    n = n + 1;
                 end
             end
-            same = [];
-            n = 0;
-            n = n+1;
-            same(n) = i;
+            end
+            if n == 5
+                m = m + 1;
+                same(r,m) = i;
+                same(r,m*2) = ii;
+            else n = 0;
+            end
+        end
+        
+    elseif r == 2||6
+        R = Runs_randomized2;
+        n = 0;
+        m = 0;
+        for i = 1:60     
+            for ii = 1:60
+            for j = 1:5
+                if isequal(R{i,j}, R{ii, j})==1
+                    n = n + 1;
+                end
+            end
+            end
+            if n == 5
+                m = m + 1;
+                same(r,m) = i;
+                same(r,m*2) = ii;
+            else n = 0;
+            end
+        end
+ 
+    elseif r == 3
+        R = new_runs_randomized;
+        n = 0;
+        m = 0;
+        for i = 1:60
+            for ii = 1:60
+                for j = 1:5
+                    if isequal(R{i,j}, R{ii, j})==1
+                        n = n + 1;
+                    end
+                end
+            end
+            if n == 5
+                m = m + 1;
+                same(r,m) = i;
+                same(r,m*2) = ii;
+            else n = 0;
+            end
+        end
+        
+    else
+        R = new_runs_randomized2;
+        n = 0;
+        m = 0;
+        for i = 1:60
+            for ii = 1:60
+                for j = 1:5
+                    if isequal(R{i,j}, R{ii, j})==1
+                        n = n + 1;
+                    end
+                end
+            end
+            if n == 5
+                m = m + 1;
+                same(r,m) = i;
+                same(r,m*2) = ii;
+            else n = 0;
+            end
         end
     end
-
-    end
 end
-
-        
