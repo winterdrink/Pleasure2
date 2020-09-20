@@ -1,6 +1,6 @@
 %% Save randmoized run order. Each version contains 120 pairs.
 
-Runs = {'RE ', 'CC', 'SS', 'C0', 'CS'}; 
+Runs = {'RE', 'CC', 'SS', 'C0', 'CS'}; 
 Runs = Runs(perms(1:5)); % all possible pairs from permutation
 % Runs = Runs(randperm(size(Runs, 1)), :); % randomize the order
 Runs_1 = Runs(1:24,:);  % start with 'CS'
@@ -42,7 +42,7 @@ save('Pleasure2_randomized_run_data.mat','Runs_randomized');  %base data
 
 
 Runs_randomized(58,:) = {'RE', 'CC','SS','CS','C0'};
-Runs_randomized(8,:) = {'CS', 'QUIN ','CC','C0', 'RE'};
+Runs_randomized(8,:) = {'CS', 'SS','CC','C0', 'RE'};
 Runs_randomized(20,:) = {'RE','CC','CS','SS','C0'};
 
 save('Pleasure2_randomized_run_data_v1.mat','Runs_randomized');  %equal transition rates
