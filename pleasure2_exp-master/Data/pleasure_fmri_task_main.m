@@ -54,8 +54,8 @@ nowtime = clock;
 SubjDate = sprintf('%.2d%.2d%.2d', nowtime(1), nowtime(2), nowtime(3));
 
 data.subject = SID;
-data.datafile = fullfile(savedir, [SubjDate, '_PLS', sprintf('%.3d', SubjNum) '_', SID, ...
-    '_run', sprintf('%.2d', SubjRun), '.mat']);
+data.datafile = fullfile(savedir, [SubjDate, '_PLS', sprintf('%.3d', SubjNum), '_', SID, ...
+    '_run', sprintf('%.2d', SubjRun), '_', char(type), '.mat']);
 data.version = 'Pleasure_v1_10-04-2018_Cocoanlab';  % month-date-year
 data.starttime = datestr(clock, 0);
 data.starttime_getsecs = GetSecs;
@@ -77,7 +77,7 @@ end
 
 %% SETUP : Create paradigm according to subject information
  
-run_dur = 870;  % including disdaq(10s), except 8 secs before trigger
+run_dur = 5;  % including disdaq(10s), except 8 secs before trigger
 
 rating_types_pls = call_ratingtypes_pls;
 
@@ -245,30 +245,40 @@ try
         x = W/2;
         y = H*(1/2);
         SetMouse(x,y)
+        anchor_type = {'cont_glms_unpls', 'cont_glms_pls'};
+        anchor_practice = [anchor_type(randperm(2)) anchor_type(randperm(2))];
         
-        while true % button
-            msgtxt = '평가 예제 : 참가자는 충분히 평가 방법을 연습한 후, 연습이 끝나면 버튼을 눌러주시기 바랍니다.';
-            DrawFormattedText(theWindow, double(msgtxt), 'center', H*(1/4), white, [], [], [], 2);
-            Screen('DrawLine', theWindow, white, lb1, H*(1/2), rb1, H*(1/2), 4); %rating scale
-            % penWidth: 0.125~7.000
-            Screen('DrawLine', theWindow, white, W/2, H*(1/2)-scale_H/3, W/2, H*(1/2)+scale_H/3, 6);
-            Screen('DrawLine', theWindow, white, lb1, H*(1/2)-scale_H/3, lb1, H*(1/2)+scale_H/3, 6);
-            Screen('DrawLine', theWindow, white, rb1, H*(1/2)-scale_H/3, rb1, H*(1/2)+scale_H/3, 6);
-            Screen('DrawLine', theWindow, orange, x, H*(1/2)-scale_H/3, x, H*(1/2)+scale_H/3, 6); %rating bar
-            Screen('Flip', theWindow);
-            
-            [x,~,button] = GetMouse(theWindow);
-            if x < lb1; x = lb1; elseif x > rb1; x = rb1; end
-            
-            [~,~,keyCode] = KbCheck;
-            if button(1) == 1
-                break
-            elseif keyCode(KbName('q')) == 1
-                abort_experiment('manual');
-                break
+        for prac_i = 1:length(anchor_practice)
+            WaitSecs(0.5);
+            disp(prac_i);
+            button = [];
+            iswhile =1;
+            while iswhile % button
+                msgtxt = '평가 예제 : 참가자는 충분히 평가 방법을 연습한 후, 연습이 끝나면 버튼을 눌러주시기 바랍니다.';
+                DrawFormattedText(theWindow, double(msgtxt), 'center', H*(1/4), white, [], [], [], 2);
+                draw_scale_pls(anchor_practice{prac_i});
+                Screen('DrawLine', theWindow, white, lb1, H*(1/2), rb1, H*(1/2), 4); %rating scale
+                % penWidth: 0.125~7.000
+                Screen('DrawLine', theWindow, white, W/2, H*(1/2)-scale_H/3, W/2, H*(1/2)+scale_H/3, 6);
+                Screen('DrawLine', theWindow, white, lb1, H*(1/2)-scale_H/3, lb1, H*(1/2)+scale_H/3, 6);
+                Screen('DrawLine', theWindow, white, rb1, H*(1/2)-scale_H/3, rb1, H*(1/2)+scale_H/3, 6);
+                Screen('DrawLine', theWindow, orange, x, H*(1/2)-scale_H/3, x, H*(1/2)+scale_H/3, 6); %rating bar
+                Screen('Flip', theWindow);
+                
+                [x,~,button] = GetMouse(theWindow);
+                if x < lb1; x = lb1; elseif x > rb1; x = rb1; end
+                
+                [~,~,keyCode] = KbCheck;
+                if button(1) == 1
+                    iswhile = 0;
+                elseif keyCode(KbName('q')) == 1
+                    abort_experiment('manual');
+                    iswhile =0;
+                end
             end
             
         end
+        
         
         % go to the next after the button is unpressed
         while (1)
@@ -376,16 +386,29 @@ try
             rec_i = rec_i + 1;
             Screen(theWindow, 'FillRect', bgcolor, window_rect);
 
-            if type{1} == 'CAPS ' | type{1} == 'QUIN '
-                [lb, rb, start_center] = draw_scale_pls('cont_glms_unpls');
-                msgtxt = '이 자극이 얼마나 불쾌 혹은 유쾌한지를 지속적으로 보고해주세요.';
-            elseif type{1} == 'REST '
-                [lb, rb, start_center] = draw_scale_pls('cont_glms_pls');
-                msgtxt = '현재 상태가 얼마나 유쾌 혹은 불쾌한지를 지속적으로 보고해주세요.';
-            else
-                [lb, rb, start_center] = draw_scale_pls('cont_glms_pls');
-                msgtxt = '이 자극이 얼마나 유쾌 혹은 불쾌한지를 지속적으로 보고해주세요.';
-            end
+%             if type{1} == 'CAPS ' | type{1} == 'QUIN '
+              
+              data_num = size(filenames(fullfile(basedir,['Data/*' rating_types_pls.postallstims{SubjRun} '.mat'])),1);
+               
+              if isequal(rating_types_pls.postallstims{SubjRun},'RE')
+                  % For Rest run
+                  if mod(data_num,2) == 1  % odd number
+                      [lb, rb, start_center] = draw_scale_pls('cont_glms_unpls');
+                      msgtxt = '현재 상태가 얼마나 불쾌 혹은 유쾌한지를 지속적으로 보고해주세요.';
+                  else
+                      [lb, rb, start_center] = draw_scale_pls('cont_glms_pls');
+                      msgtxt = '현재 상태가 얼마나 유쾌 혹은 불쾌한지를 지속적으로 보고해주세요.';
+                  end
+              else
+                  % For the other runs
+                  if mod(data_num,2) == 1  % odd number
+                      [lb, rb, start_center] = draw_scale_pls('cont_glms_unpls');
+                      msgtxt = '이 자극이 얼마나 불쾌 혹은 유쾌한지를 지속적으로 보고해주세요.';
+                  else
+                      [lb, rb, start_center] = draw_scale_pls('cont_glms_pls');
+                      msgtxt = '이 자극이 얼마나 유쾌 혹은 불쾌한지를 지속적으로 보고해주세요.';
+                  end
+              end
             
             DrawFormattedText(theWindow, double(msgtxt), 'center', H*(1/4), orange);
             [x,~,~] = GetMouse(theWindow);
@@ -398,7 +421,7 @@ try
             data.dat.cont_rating(rec_i,1) = (x-W/2)/(rb1-lb1).*2;
             
             
-            % save data after 7 mins
+            % save data after 9 mins
             for i = 1
                 k = 0;
                 while GetSecs - data.dat.cont_rating_starttime > 7*60-0.5 && GetSecs - data.dat.cont_rating_starttime < 7*60+0.5

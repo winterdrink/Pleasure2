@@ -1,13 +1,13 @@
 %% Save randmoized run order. Each version contains 120 pairs.
 
-Runs = {'REST ', 'CAPS ', 'QUIN ', 'SWEET', 'TOUCH'};
+Runs = {'RE ', 'CC', 'SS', 'C0', 'CS'}; 
 Runs = Runs(perms(1:5)); % all possible pairs from permutation
 % Runs = Runs(randperm(size(Runs, 1)), :); % randomize the order
-Runs_1 = Runs(1:24,:);  % start with 'TOUCH'
-Runs_2 = Runs(25:48,:);  % start with 'SWEET'
-Runs_3 = Runs(49:72,:);  % start with 'QUIN'
-Runs_4 = Runs(73:96,:);  % start with 'CAPS'
-Runs_5 = Runs(97:120,:);  % start with 'REST'
+Runs_1 = Runs(1:24,:);  % start with 'CS'
+Runs_2 = Runs(25:48,:);  % start with 'C0'
+Runs_3 = Runs(49:72,:);  % start with 'SS'
+Runs_4 = Runs(73:96,:);  % start with 'CC'
+Runs_5 = Runs(97:120,:);  % start with 'RE'
 
 %% Divide into 2 halves
 %% First half (part1)
@@ -38,14 +38,14 @@ Runs_randomized(25:36,:) = Runs_3_odd;
 Runs_randomized(37:48,:) = Runs_4_even;
 Runs_randomized(49:60,:) = Runs_5_oddeven;
 
-save('Pleasure_randomized_run_data.mat','Runs_randomized');  %base data
+save('Pleasure2_randomized_run_data.mat','Runs_randomized');  %base data
 
 
-Runs_randomized(58,:) = {'REST ', 'CAPS ','QUIN ','TOUCH','SWEET'};
-Runs_randomized(8,:) = {'TOUCH', 'QUIN ','CAPS ','SWEET', 'REST '};
-Runs_randomized(20,:) = {'REST ','CAPS ','TOUCH','QUIN ','SWEET'};
+Runs_randomized(58,:) = {'RE', 'CC','SS','CS','C0'};
+Runs_randomized(8,:) = {'CS', 'QUIN ','CC','C0', 'RE'};
+Runs_randomized(20,:) = {'RE','CC','CS','SS','C0'};
 
-save('Pleasure_randomized_run_data_v1.mat','Runs_randomized');  %equal transition rates
+save('Pleasure2_randomized_run_data_v1.mat','Runs_randomized');  %equal transition rates
 
 % Final version of part1 (according to 'Pleasure_scannote.xlsx')
 for i = 1:7
@@ -141,14 +141,14 @@ Runs_randomized2(25:36,:) = Runs_3_even;
 Runs_randomized2(37:48,:) = Runs_4_odd;
 Runs_randomized2(49:60,:) = Runs_5_oddeven2;
 
-save('Pleasure_randomized_run_data2.mat','Runs_randomized2');  %base data
+save('Pleasure2_randomized_run_data2.mat','Runs_randomized2');  %base data
 
-Runs_randomized2(3,:) = {'TOUCH', 'CAPS ','SWEET','REST','QUIN '};
-Runs_randomized2(5,:) = {'REST ', 'QUIN ','CAPS ','TOUCH','SWEET'};
-Runs_randomized2(6,:) = {'TOUCH', 'REST ','QUIN ','SWEET', 'CAPS '};
-Runs_randomized2(40,:) = {'CAPS ', 'REST ','TOUCH','QUIN ', 'SWEET'};
+Runs_randomized2(3,:) = {'CS', 'CC','C0','RE','SS'};
+Runs_randomized2(5,:) = {'RE', 'SS','CC','CS','C0'};
+Runs_randomized2(6,:) = {'CS', 'RE','SS','C0', 'CC'};
+Runs_randomized2(40,:) = {'CC', 'RE','CS','SS', 'C0'};
 
-save('Pleasure_randomized_run_data_v2.mat','Runs_randomized2');  %equal transition rates
+save('Pleasure2_randomized_run_data_v2.mat','Runs_randomized2');  %equal transition rates
 
 % Final version of part2 (according to 'Pleasure_scannote.xlsx')
 new_runs_randomized2(1,:) = Runs_randomized2(1,:);
@@ -212,6 +212,6 @@ new_runs_randomized2(58,:) = Runs_randomized2(59,:);
 new_runs_randomized2(59,:) = Runs_randomized2(48,:);
 new_runs_randomized2(60,:) = Runs_randomized2(60,:);
 
-save('Pleasure_randomized_run_data_final2.mat','new_runs_randomized2');  %equal trasition rates
+save('Pleasure2_randomized_run_data_final2.mat','new_runs_randomized2');  %equal trasition rates
 
 
