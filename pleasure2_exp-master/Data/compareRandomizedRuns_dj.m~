@@ -6,7 +6,7 @@ same = [];
 same = num2cell(same);
 
 
-A = cell(1,4);
+
 for r = 1:length(rordernames)
     load(rordernames{r})
     if r == 1
@@ -22,8 +22,7 @@ for r = 1:length(rordernames)
                 end
                 if n == 5
                     m = m + 1;
-                    A(m, 1) = {i};
-                    A(m, 2) = {ii};
+                    cell{m, 1) = i
                 else
                     n = 0;
                 end
@@ -43,8 +42,6 @@ for r = 1:length(rordernames)
                 end
                 if n == 5
                     mm = mm + 1;
-                    A(mm, 3) = {i};
-                    A(mm, 4) = {ii};
                 else
                     n = 0;
                 end
