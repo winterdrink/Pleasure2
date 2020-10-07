@@ -77,7 +77,7 @@ end
 
 %% SETUP : Create paradigm according to subject information
  
-run_dur = 870;  % including disdaq(10s), except 8 secs before trigger
+run_dur = 5;  % including disdaq(10s), except 8 secs before trigger
 
 rating_types_pls = call_ratingtypes_pls;
 
@@ -93,7 +93,7 @@ window_ratio = 1.1;
 screens = Screen('Screens');
 window_num = screens(1);
 Screen('Preference', 'SkipSyncTests', 1);
-screen_mode = 'full';
+screen_mode = 'small';
 window_info = Screen('Resolution', window_num);
 switch screen_mode
     case 'full'
@@ -390,7 +390,7 @@ try
               
               data_num = size(filenames(fullfile(basedir,['Data/*' rating_types_pls.postallstims{SubjRun} '.mat'])),1);
                
-              if isequal(rating_types_pls.postallstims{SubjRun},'RE')
+              if isequal(char(type),'RE')
                   % For Rest run
                   if mod(data_num,2) == 1  % odd number
                       [lb, rb, start_center] = draw_scale_pls('cont_glms_unpls');
@@ -474,9 +474,9 @@ try
         all_start_t = GetSecs;
         data.dat.postrun_starttime = all_start_t;
         ratestim = strcmp(rating_types_pls.postallstims, type);
-        % rating_types_pls.postallstims = {'REST ', 'CAPS ', 'QUIN ', 'SWEET', 'TOUCH'};
+        % rating_types_pls.postallstims = {'RE', 'CC ', 'SS', 'C0', 'CS'};
         % 1 appears at the right type of this session
-        % Ex: 'TOUCH' session --> 0 0 0 0 1 (logical)
+        % Ex: 'CS' session --> 0 0 0 0 1 (logical)
         scales = rating_types_pls.postalltypes{ratestim};
         
         Screen(theWindow, 'FillRect', bgcolor, window_rect);

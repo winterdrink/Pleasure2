@@ -42,8 +42,6 @@ save('Pleasure2_randomized_run_data.mat','Runs_randomized');  %base data
 
 
 Runs_randomized(58,:) = {'RE', 'CC','SS','CS','C0'};
-Runs_randomized(8,:) = {'CS', 'SS','CC','C0', 'RE'};
-Runs_randomized(20,:) = {'RE','CC','CS','SS','C0'};
 
 save('Pleasure2_randomized_run_data_v1.mat','Runs_randomized');  %equal transition rates
 
@@ -142,11 +140,6 @@ Runs_randomized2(37:48,:) = Runs_4_odd;
 Runs_randomized2(49:60,:) = Runs_5_oddeven2;
 
 save('Pleasure2_randomized_run_data2.mat','Runs_randomized2');  %base data
-
-Runs_randomized2(3,:) = {'CS', 'CC','C0','RE','SS'};
-Runs_randomized2(5,:) = {'RE', 'SS','CC','CS','C0'};
-Runs_randomized2(6,:) = {'CS', 'RE','SS','C0', 'CC'};
-Runs_randomized2(40,:) = {'CC', 'RE','CS','SS', 'C0'};
 
 save('Pleasure2_randomized_run_data_v2.mat','Runs_randomized2');  %equal transition rates
 
