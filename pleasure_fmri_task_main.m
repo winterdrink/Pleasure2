@@ -77,7 +77,7 @@ end
 
 %% SETUP : Create paradigm according to subject information
  
-run_dur = 5;  % including disdaq(10s), except 8 secs before trigger
+run_dur = 870;  % including disdaq(10s), except 8 secs before trigger
 
 rating_types_pls = call_ratingtypes_pls;
 
@@ -93,7 +93,7 @@ window_ratio = 1.1;
 screens = Screen('Screens');
 window_num = screens(1);
 Screen('Preference', 'SkipSyncTests', 1);
-screen_mode = 'small';
+screen_mode = 'full';
 window_info = Screen('Resolution', window_num);
 switch screen_mode
     case 'full'
