@@ -244,7 +244,7 @@ try
         % bi-directional
         x = W/2;
         y = H*(1/2);
-        SetMouse(x,y)
+        SetMouse(x,y);
         anchor_type = {'cont_glms_unpls', 'cont_glms_pls'};
         anchor_practice = [anchor_type(randperm(2)) anchor_type(randperm(2))];
         
@@ -252,7 +252,9 @@ try
             WaitSecs(0.5);
             disp(prac_i);
             button = [];
-            iswhile =1;
+            iswhile = 1;
+            SetMouse(W/2,H*(1/2));
+            
             while iswhile % button
                 msgtxt = '평가 예제 : 참가자는 충분히 평가 방법을 연습한 후, 연습이 끝나면 버튼을 눌러주시기 바랍니다.';
                 DrawFormattedText(theWindow, double(msgtxt), 'center', H*(1/4), white, [], [], [], 2);
@@ -273,10 +275,9 @@ try
                     iswhile = 0;
                 elseif keyCode(KbName('q')) == 1
                     abort_experiment('manual');
-                    iswhile =0;
+                    iswhile = 0;
                 end
             end
-            
         end
         
         
@@ -294,6 +295,7 @@ try
         x = W*(1/4);
         y = H*(1/2);
         SetMouse(x,y)
+        WaitSecs(0.5);
         
         while true % button
             msgtxt = '평가 예제 : 참가자는 충분히 평가 방법을 연습한 후, 연습이 끝나면 버튼을 눌러주시기 바랍니다.';
@@ -301,7 +303,9 @@ try
             Screen('DrawLine', theWindow, white, lb2, H*(1/2), rb2, H*(1/2), 4); %rating scale
             % penWidth: 0.125~7.000
             Screen('DrawLine', theWindow, white, lb2, H*(1/2)-scale_H/3, lb2, H*(1/2)+scale_H/3, 6);
+            DrawFormattedText(theWindow, double('전혀 느껴지지\n      않음'), lb2-scale_H/0.8, H*(1/2)+scale_H/1.2, white,[],[],[],1.2);
             Screen('DrawLine', theWindow, white, rb2, H*(1/2)-scale_H/3, rb2, H*(1/2)+scale_H/3, 6);
+            DrawFormattedText(theWindow, double('상상할 수 있는\n   가장 강한'), rb2-scale_H/0.7, H*(1/2)+scale_H/1.2, white,[],[],[],1.2);
             Screen('DrawLine', theWindow, orange, x, H*(1/2)-scale_H/3, x, H*(1/2)+scale_H/3, 6); %rating bar
             Screen('Flip', theWindow);
             
