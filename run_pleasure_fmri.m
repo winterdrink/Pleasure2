@@ -15,7 +15,7 @@ pleasure_fmri_t1(SID, SubjNum);
 %% Run 1
 
 run_i = 1;
-pleasure_fmri_task_main(SID, SubjNum, order(run_i),'practice','run')%, 'biopac')%'explain', 'practice', 'eyelink' )
+pleasure_fmri_task_main(SID, SubjNum, order(run_i),'explain', 'practice', 'run', 'biopac','eyelink')
 
 %% RUN 2
 
@@ -25,8 +25,7 @@ pleasure_fmri_task_main(SID, SubjNum, order(run_i), 'run', 'biopac')%, 'eyelink'
 %% RUN 3
 
 run_i = 3;
-pleasure_fmri_task_main(SID, SubjNum, order(run_i),  'run', 'biopac')%, 'explain', 'practice')%, 'eyelink')
-
+pleasure_fmri_task_main(SID, SubjNum, order(run_i),  'run', 'biopac')%, 'eyelink')
 %% RUN 4
 
 run_i = 4;
