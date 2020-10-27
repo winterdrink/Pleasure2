@@ -389,28 +389,28 @@ try
             
             rec_i = rec_i + 1;
             Screen(theWindow, 'FillRect', bgcolor, window_rect);
-
-%             if type{1} == 'CAPS ' | type{1} == 'QUIN '
               
-              data_num = size(filenames(fullfile(basedir,['Data/*' rating_types_pls.postallstims{SubjRun} '.mat'])),1);
+              data_num = size(filenames(fullfile(basedir,['Data/*' char(type) '.mat'])),1);
+              data_num = data_num - size(filenames(fullfile(basedir,['Data/*' sprintf('PLS%.3d',SubjNum) '*' char(type) '.mat'])),1);
+              
                
               if isequal(char(type),'RE')
                   % For Rest run
                   if mod(data_num,2) == 1  % odd number
                       [lb, rb, start_center] = draw_scale_pls('cont_glms_unpls');
-                      msgtxt = '현재 상태가 얼마나 불쾌 혹은 유쾌한지를 지속적으로 보고해주세요.';
+                      msgtxt = '현재 상태가 얼마나 유쾌 혹은 불쾌한지를 지속적으로 보고해주세요.';
                   else
                       [lb, rb, start_center] = draw_scale_pls('cont_glms_pls');
-                      msgtxt = '현재 상태가 얼마나 유쾌 혹은 불쾌한지를 지속적으로 보고해주세요.';
+                      msgtxt = '현재 상태가 얼마나 불쾌 혹은 유쾌한지를 지속적으로 보고해주세요.';
                   end
               else
                   % For the other runs
                   if mod(data_num,2) == 1  % odd number
                       [lb, rb, start_center] = draw_scale_pls('cont_glms_unpls');
-                      msgtxt = '이 자극이 얼마나 불쾌 혹은 유쾌한지를 지속적으로 보고해주세요.';
+                      msgtxt = '이 자극이 얼마나 유쾌 혹은 불쾌한지를 지속적으로 보고해주세요.';
                   else
                       [lb, rb, start_center] = draw_scale_pls('cont_glms_pls');
-                      msgtxt = '이 자극이 얼마나 유쾌 혹은 불쾌한지를 지속적으로 보고해주세요.';
+                      msgtxt = '이 자극이 얼마나 불쾌 혹은 유쾌한지를 지속적으로 보고해주세요.';
                   end
               end
             
