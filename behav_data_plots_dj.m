@@ -1,5 +1,5 @@
 %% get data
-datdir = '/Users/dongjupark/Dropbox/Pleasure2/Data';
+datdir = '/Users/dongjupark/Dropbox/Pleasure2/Data/pilot_data';
 cd(datdir);
 addpath(genpath(pwd));
 
@@ -7,7 +7,7 @@ addpath(genpath(pwd));
 
 sublist = dir(datdir);
 %subnames = {sublist.name}'
-subnames = filenames(fullfile(datdir, '*_PLS009_psy_run0*.mat')); % sub's initial
+subnames = filenames(fullfile(datdir, '*09_PLS001_test_run0*.mat')); % sub's initial
 
 figure;
 nodata=0;
@@ -60,9 +60,45 @@ orders = cell2table(orders);
 
 
 
-%% clear and close
+%% for each session
 
-clear all
-close all
+clear datdir;
+datdir = '/Users/dongjupark/Dropbox/Pleasure2_codes/Data';
+cd(datdir);
+addpath(genpath(pwd));
 
+sublist = dir(datdir);
+%subnames = {sublist.name}'
+subnames = filenames(fullfile(datdir, '*run0*.mat'));
+sessions = ["C0"; "CC"; "CS"; "SS"; "RE"];
+
+% for i = 1:numel(subnames)
+%     load(subnames{i});
+%     if data.dat.type == 
+
+figure;
+
+for i = 1:numel(subnames)
+    load(subnames{i});
+    for j = 1:numel(sessions)
+        if data.dat.type == sessions(j)
+            x = data.dat.cont_rating_time_fromstart;
+            y = data.dat.cont_rating;
+            plot(x,-y)
+            subplot(3,2,j);
+            axis([0 870 -1 1]);
+            xlabel('time (secs)', 'FontSize', 10);
+            ylabel('rating (-1 ~ 1)', 'FontSize', 10);
+            title(data.dat.type);
+            hold on;
+            yline(0);
+        end
+    end
+end
+
+
+% pleasure_fmri_task_main에 line 49부터 subinfo, data 저장함
+% 이후 9분 즈음에 한번 더 저장
+% mod(data_num,2) == 1 이면 불쾌가 오른쪽, 즉 불쾌라고 찍어주고, 아님 숫자만 넣어도 되고
+% 매 런마다 저장되도록!
 

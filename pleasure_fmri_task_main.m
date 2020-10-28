@@ -87,7 +87,7 @@ data.dat.duration = run_dur;
 
 %% SETUP : Screen
 
-bgcolor = 50;
+bgcolor = 90;
 window_ratio = 1.1;
 
 screens = Screen('Screens');
@@ -398,19 +398,35 @@ try
                   % For Rest run
                   if mod(data_num,2) == 1  % odd number
                       [lb, rb, start_center] = draw_scale_pls('cont_glms_unpls');
-                      msgtxt = '현재 상태가 얼마나 유쾌 혹은 불쾌한지를 지속적으로 보고해주세요.';
+                      msgtxt = '  ';
+                      save_anchor = "right_unpls";
+                      data.dat.cont_rat_save_achor = save_anchor;
+                      save(data.datafile, 'data', '-append')
+                      
                   else
                       [lb, rb, start_center] = draw_scale_pls('cont_glms_pls');
-                      msgtxt = '현재 상태가 얼마나 불쾌 혹은 유쾌한지를 지속적으로 보고해주세요.';
+                      msgtxt = '  ';
+                      save_anchor = "right_pls";
+                      data.dat.cont_rat_save_achor = save_anchor;
+                      save(data.datafile, 'data', '-append')
+                      
                   end
               else
                   % For the other runs
                   if mod(data_num,2) == 1  % odd number
                       [lb, rb, start_center] = draw_scale_pls('cont_glms_unpls');
-                      msgtxt = '이 자극이 얼마나 유쾌 혹은 불쾌한지를 지속적으로 보고해주세요.';
+                      msgtxt = '  ';
+                      save_anchor = "right_unpls";
+                      data.dat.cont_rat_save_achor = save_anchor;
+                      save(data.datafile, 'data', '-append')
+                      
                   else
                       [lb, rb, start_center] = draw_scale_pls('cont_glms_pls');
-                      msgtxt = '이 자극이 얼마나 불쾌 혹은 유쾌한지를 지속적으로 보고해주세요.';
+                      msgtxt = ' ';
+                      save_anchor = "right_pls";
+                      data.dat.cont_rat_save_achor = save_anchor;
+                      save(data.datafile, 'data', '-append')
+                      
                   end
               end
             
