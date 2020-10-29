@@ -400,14 +400,14 @@ try
                       [lb, rb, start_center] = draw_scale_pls('cont_glms_unpls');
                       msgtxt = '  ';
                       save_anchor = "right_unpls";
-                      data.dat.cont_rat_save_achor = save_anchor;
+                      data.dat.cont_rat_save_anchor = save_anchor;
                       save(data.datafile, 'data', '-append')
                       
                   else
                       [lb, rb, start_center] = draw_scale_pls('cont_glms_pls');
                       msgtxt = '  ';
                       save_anchor = "right_pls";
-                      data.dat.cont_rat_save_achor = save_anchor;
+                      data.dat.cont_rat_save_anchor = save_anchor;
                       save(data.datafile, 'data', '-append')
                       
                   end
@@ -417,14 +417,14 @@ try
                       [lb, rb, start_center] = draw_scale_pls('cont_glms_unpls');
                       msgtxt = '  ';
                       save_anchor = "right_unpls";
-                      data.dat.cont_rat_save_achor = save_anchor;
+                      data.dat.cont_rat_save_anchor = save_anchor;
                       save(data.datafile, 'data', '-append')
                       
                   else
                       [lb, rb, start_center] = draw_scale_pls('cont_glms_pls');
                       msgtxt = ' ';
                       save_anchor = "right_pls";
-                      data.dat.cont_rat_save_achor = save_anchor;
+                      data.dat.cont_rat_save_anchor = save_anchor;
                       save(data.datafile, 'data', '-append')
                       
                   end
