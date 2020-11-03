@@ -117,7 +117,6 @@ while true
     if keyCode(KbName('space')) == 1
         break
     end
-    
 end
 
 % Start the survey
@@ -153,7 +152,14 @@ for stimuli_i = 1:numel(stimuli)
                 end
                 break
             end
+            [~,~,keyCode] = KbCheck;
+            if keyCode(KbName('q')) == 1
+                abort_experiment('manual');
+                break
+            end
         end
+  
+       
         
         cur_t = GetSecs;
         eval(['data.dat.' label '_gs_time_fromstart(rec_i,1) = cur_t-first_start_t;']);
@@ -194,6 +200,11 @@ for stimuli_i = 1:numel(stimuli)
                 end
                 break
             end
+            [~,~,keyCode] = KbCheck;
+            if keyCode(KbName('q')) == 1
+                abort_experiment('manual');
+                break
+            end
         end
         
         cur_t = GetSecs;
@@ -209,6 +220,11 @@ for stimuli_i = 1:numel(stimuli)
             Screen('Flip', theWindow);
             freeze_cur_t = GetSecs;
             if freeze_cur_t - freeze_t > 0.5
+                break
+            end
+            [~,~,keyCode] = KbCheck;
+            if keyCode(KbName('q')) == 1
+                abort_experiment('manual');
                 break
             end
         end
@@ -234,6 +250,11 @@ for stimuli_i = 1:numel(stimuli)
                 while button(1)
                     [~,~,button] = GetMouse(theWindow);
                 end
+                break
+            end
+            [~,~,keyCode] = KbCheck;
+            if keyCode(KbName('q')) == 1
+                abort_experiment('manual');
                 break
             end
         end
@@ -275,6 +296,11 @@ for stimuli_i = 1:numel(stimuli)
                 while button(1)
                     [~,~,button] = GetMouse(theWindow);
                 end
+                break
+            end
+            [~,~,keyCode] = KbCheck;
+            if keyCode(KbName('q')) == 1
+                abort_experiment('manual');
                 break
             end
         end
