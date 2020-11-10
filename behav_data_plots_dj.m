@@ -1,5 +1,5 @@
 %% get data
-datdir = '/Users/dongjupark/Dropbox/Pleasure2/Data/pilot_data';
+datdir = '/Users/dongjupark/Dropbox/Pleasure2/Data/real_data';
 cd(datdir);
 addpath(genpath(pwd));
 
@@ -7,7 +7,7 @@ addpath(genpath(pwd));
 
 sublist = dir(datdir);
 %subnames = {sublist.name}'
-subnames = filenames(fullfile(datdir, '*09_PLS001_test_run0*.mat')); % sub's initial
+subnames = filenames(fullfile(datdir, '*_shw_run0*.mat')); % sub's initial
 
 figure;
 nodata=0;
@@ -21,27 +21,15 @@ for i = 1:numel(subnames)
         x = data.dat.cont_rating_time_fromstart;
         y = data.dat.cont_rating;
         subplot(numel(subnames)-nodata,1,i-nodata);
-        plot(x,-y)
+        plot(x,-y, "LineWidth", 1)
         axis([0 870 -0.7 0.7]);
         xlabel('time (secs)', 'FontSize', 10);
         ylabel('rating (-1 ~ 1)', 'FontSize', 10);
-        title(data.starttime);
+        title(data.starttime + " " + data.dat.type);
         hold on;
         yline(0);
     end
 end
-
-load(subnames{i})
-x = data.dat.cont_rating_time_fromstart;
-y = data.dat.cont_rating;
-subplot(numel(subnames)-nodata,1,i-nodata);
-plot(x,-y)
-axis([0 870 -0.7 0.7]);
-xlabel('time (secs)', 'FontSize', 10);
-ylabel('rating (-1 ~ 1)', 'FontSize', 10);
-title(data.starttime);
-hold on;
-yline(0);
 
 %% run order
 

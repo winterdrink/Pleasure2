@@ -398,39 +398,48 @@ try
                   % For Rest run
                   if mod(data_num,2) == 1  % odd number
                       [lb, rb, start_center] = draw_scale_pls('cont_glms_unpls');
-                      msgtxt = '  ';
+%                       msgtxt = '  ';
                       save_anchor = "right_unpls";
-                      data.dat.cont_rat_save_anchor = save_anchor;
+                      data.dat.cont_rat_save_achor = save_anchor;
                       save(data.datafile, 'data', '-append')
                       
                   else
                       [lb, rb, start_center] = draw_scale_pls('cont_glms_pls');
-                      msgtxt = '  ';
                       save_anchor = "right_pls";
-                      data.dat.cont_rat_save_anchor = save_anchor;
+                      data.dat.cont_rat_save_achor = save_anchor;
                       save(data.datafile, 'data', '-append')
                       
                   end
               else
-                  % For the other runs
-                  if mod(data_num,2) == 1  % odd number
-                      [lb, rb, start_center] = draw_scale_pls('cont_glms_unpls');
-                      msgtxt = '  ';
-                      save_anchor = "right_unpls";
-                      data.dat.cont_rat_save_anchor = save_anchor;
-                      save(data.datafile, 'data', '-append')
-                      
-                  else
-                      [lb, rb, start_center] = draw_scale_pls('cont_glms_pls');
-                      msgtxt = ' ';
-                      save_anchor = "right_pls";
-                      data.dat.cont_rat_save_anchor = save_anchor;
-                      save(data.datafile, 'data', '-append')
-                      
+                  if isequal(char(type), 'CS') | isequal(char(type), 'C0')
+                      % For the other runs
+                      if mod(data_num,2) == 1  % odd number
+                          [lb, rb, start_center] = draw_scale_pls('cont_glms_pls');
+                          save_anchor = "right_pls";
+                          data.dat.cont_rat_save_achor = save_anchor;
+                          save(data.datafile, 'data', '-append') 
+                      else
+                          [lb, rb, start_center] = draw_scale_pls('cont_glms_unpls');
+                          save_anchor = "right_unpls";
+                          data.dat.cont_rat_save_achor = save_anchor;
+                          save(data.datafile, 'data', '-append')
+                      end
+                  elseif isequal(char(type), 'CC') | isequal(char(type), 'SS') 
+                      if mod(data_num,2) == 1  % odd number
+                          [lb, rb, start_center] = draw_scale_pls('cont_glms_unpls');
+                          save_anchor = "right_unpls";
+                          data.dat.cont_rat_save_achor = save_anchor;
+                          save(data.datafile, 'data', '-append') 
+                      else
+                          [lb, rb, start_center] = draw_scale_pls('cont_glms_pls');
+                          save_anchor = "right_pls";
+                          data.dat.cont_rat_save_achor = save_anchor;
+                          save(data.datafile, 'data', '-append')
+                      end
                   end
               end
             
-            DrawFormattedText(theWindow, double(msgtxt), 'center', H*(1/4), orange);
+%             DrawFormattedText(theWindow, double(msgtxt), 'center', H*(1/4), orange);
             [x,~,~] = GetMouse(theWindow);
             if x < lb1; x = lb1; elseif x > rb1; x = rb1; end
             Screen('DrawLine', theWindow, orange, x, H*(1/2)-scale_H/3, x, H*(1/2)+scale_H/3, 6);  %rating bar
