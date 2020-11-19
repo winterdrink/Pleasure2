@@ -8,7 +8,7 @@ basedir = pwd;
 cd(basedir);
 addpath(genpath(basedir));
 
-SID = input('\nSubject ID? : ', 's');
+SID = input('\nSubject ID? (e.g. 001_pdj): ', 's');
 SID = strtrim(SID);
 
 
@@ -16,7 +16,7 @@ savedir = fullfile(basedir, 'BGS_Survey');
 nowtime = clock;
 Date = sprintf('%.2d%.2d%.2d', nowtime(1), nowtime(2), nowtime(3));
 data.subject = SID;
-data.datafile = fullfile(savedir, ['BGS_PLS_', Date, '_', SID, '.mat']);
+data.datafile = fullfile(savedir, [Date, '_', 'BGS_PLST', SID, '.mat']);
 data.version = 'Pleasure_v1_10-01-2018_Cocoanlab';
 data.starttime = datestr(clock, 0);
 data.starttime_getsecs = GetSecs;
@@ -109,7 +109,7 @@ stimuli = BGS_questionnaires.stimulus_types_content;
 
 
 while true
-    msgtxt = 'Áö±ÝºÎÅÍ ¼³¹®À» ½ÃÀÛÇÕ´Ï´Ù. (space)';
+    msgtxt = 'ï¿½ï¿½ï¿½Ýºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½. (space)';
     DrawFormattedText(theWindow, double(msgtxt), 'center', 'center', white);
     Screen('Flip', theWindow);
     
@@ -117,6 +117,7 @@ while true
     if keyCode(KbName('space')) == 1
         break
     end
+    
 end
 
 % Start the survey
@@ -152,14 +153,7 @@ for stimuli_i = 1:numel(stimuli)
                 end
                 break
             end
-            [~,~,keyCode] = KbCheck;
-            if keyCode(KbName('q')) == 1
-                abort_experiment('manual');
-                break
-            end
         end
-  
-       
         
         cur_t = GetSecs;
         eval(['data.dat.' label '_gs_time_fromstart(rec_i,1) = cur_t-first_start_t;']);
@@ -200,11 +194,6 @@ for stimuli_i = 1:numel(stimuli)
                 end
                 break
             end
-            [~,~,keyCode] = KbCheck;
-            if keyCode(KbName('q')) == 1
-                abort_experiment('manual');
-                break
-            end
         end
         
         cur_t = GetSecs;
@@ -220,11 +209,6 @@ for stimuli_i = 1:numel(stimuli)
             Screen('Flip', theWindow);
             freeze_cur_t = GetSecs;
             if freeze_cur_t - freeze_t > 0.5
-                break
-            end
-            [~,~,keyCode] = KbCheck;
-            if keyCode(KbName('q')) == 1
-                abort_experiment('manual');
                 break
             end
         end
@@ -250,11 +234,6 @@ for stimuli_i = 1:numel(stimuli)
                 while button(1)
                     [~,~,button] = GetMouse(theWindow);
                 end
-                break
-            end
-            [~,~,keyCode] = KbCheck;
-            if keyCode(KbName('q')) == 1
-                abort_experiment('manual');
                 break
             end
         end
@@ -298,11 +277,6 @@ for stimuli_i = 1:numel(stimuli)
                 end
                 break
             end
-            [~,~,keyCode] = KbCheck;
-            if keyCode(KbName('q')) == 1
-                abort_experiment('manual');
-                break
-            end
         end
         
         cur_t = GetSecs;
@@ -327,7 +301,7 @@ end
 
 if stimuli_i == numel(BGS_questionnaires.stimulus_types_content)
     while true
-        msgtxt = '¼³¹®ÀÌ ¸ðµÎ ³¡³µ½À´Ï´Ù.\nÂü°¡ÀÚºÐ²²¼­´Â ½ÇÇèÀÚÀÇ Áö½Ã¿¡ µû¶óÁÖ½Ã±â ¹Ù¶ø´Ï´Ù. (space)';
+        msgtxt = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.\nï¿½ï¿½ï¿½ï¿½ï¿½ÚºÐ²ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö½Ã±ï¿½ ï¿½Ù¶ï¿½ï¿½Ï´ï¿½. (space)';
         msgtxt = double(msgtxt); % korean to double
         DrawFormattedText(theWindow, msgtxt, 'center', 'center', white, [], [], [], 2);
         Screen('Flip', theWindow);

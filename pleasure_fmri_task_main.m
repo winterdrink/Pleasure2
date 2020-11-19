@@ -54,7 +54,7 @@ nowtime = clock;
 SubjDate = sprintf('%.2d%.2d%.2d', nowtime(1), nowtime(2), nowtime(3));
 
 data.subject = SID;
-data.datafile = fullfile(savedir, [SubjDate, '_PLS', sprintf('%.3d', SubjNum), '_', SID, ...
+data.datafile = fullfile(savedir, [SubjDate, '_PLST', sprintf('%.3d', SubjNum), '_', SID, ...
     '_run', sprintf('%.2d', SubjRun), '_', char(type), '.mat']);
 data.version = 'Pleasure_v1_10-04-2018_Cocoanlab';  % month-date-year
 data.starttime = datestr(clock, 0);
@@ -175,7 +175,7 @@ try
         
         % Explain bi-directional scale with visualization
         while true % Button
-            msgtxt = 'Áö±ÝºÎÅÍ ½ÇÇèÀÌ ½ÃÀÛµË´Ï´Ù. ¸ÕÀú, ½ÇÇèÀ» ÁøÇàÇÏ±â¿¡ ¾Õ¼­ Æò°¡ Ã´µµ¿¡ ´ëÇÑ ¼³¸íÀ» ÁøÇàÇÏ°Ú½À´Ï´Ù.\n\nÂü°¡ÀÚ´Â ¸ðµç ÁØºñ°¡ ¿Ï·áµÇ¸é ¹öÆ°À» ´­·¯ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.';
+            msgtxt = 'ï¿½ï¿½ï¿½Ýºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÛµË´Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±â¿¡ ï¿½Õ¼ï¿½ ï¿½ï¿½ Ã´ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°Ú½ï¿½ï¿½Ï´ï¿½.\n\nï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ ï¿½ï¿½ï¿½ ï¿½Øºï¿½ ï¿½Ï·ï¿½Ç¸ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö½Ã±ï¿½ ï¿½Ù¶ï¿½ï¿½Ï´ï¿½.';
             DrawFormattedText(theWindow, double(msgtxt), 'center', 'center', white, [], [], [], 2);
             Screen('Flip', theWindow);
             
@@ -256,7 +256,7 @@ try
             SetMouse(W/2,H*(1/2));
             
             while iswhile % button
-                msgtxt = 'Æò°¡ ¿¹Á¦ : Âü°¡ÀÚ´Â ÃæºÐÈ÷ Æò°¡ ¹æ¹ýÀ» ¿¬½ÀÇÑ ÈÄ, ¿¬½ÀÀÌ ³¡³ª¸é ¹öÆ°À» ´­·¯ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.';
+                msgtxt = 'ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö½Ã±ï¿½ ï¿½Ù¶ï¿½ï¿½Ï´ï¿½.';
                 DrawFormattedText(theWindow, double(msgtxt), 'center', H*(1/4), white, [], [], [], 2);
                 draw_scale_pls(anchor_practice{prac_i});
                 Screen('DrawLine', theWindow, white, lb1, H*(1/2), rb1, H*(1/2), 4); %rating scale
@@ -298,14 +298,14 @@ try
         WaitSecs(0.5);
         
         while true % button
-            msgtxt = 'Æò°¡ ¿¹Á¦ : Âü°¡ÀÚ´Â ÃæºÐÈ÷ Æò°¡ ¹æ¹ýÀ» ¿¬½ÀÇÑ ÈÄ, ¿¬½ÀÀÌ ³¡³ª¸é ¹öÆ°À» ´­·¯ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.';
+            msgtxt = 'ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö½Ã±ï¿½ ï¿½Ù¶ï¿½ï¿½Ï´ï¿½.';
             DrawFormattedText(theWindow, double(msgtxt), 'center', H*(1/4), white, [], [], [], 2);
             Screen('DrawLine', theWindow, white, lb2, H*(1/2), rb2, H*(1/2), 4); %rating scale
             % penWidth: 0.125~7.000
             Screen('DrawLine', theWindow, white, lb2, H*(1/2)-scale_H/3, lb2, H*(1/2)+scale_H/3, 6);
-            DrawFormattedText(theWindow, double('ÀüÇô ´À²¸ÁöÁö\n      ¾ÊÀ½'), lb2-scale_H/0.8, H*(1/2)+scale_H/1.2, white,[],[],[],1.2);
+            DrawFormattedText(theWindow, double('ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n      ï¿½ï¿½ï¿½ï¿½'), lb2-scale_H/0.8, H*(1/2)+scale_H/1.2, white,[],[],[],1.2);
             Screen('DrawLine', theWindow, white, rb2, H*(1/2)-scale_H/3, rb2, H*(1/2)+scale_H/3, 6);
-            DrawFormattedText(theWindow, double('»ó»óÇÒ ¼ö ÀÖ´Â\n   °¡Àå °­ÇÑ'), rb2-scale_H/0.7, H*(1/2)+scale_H/1.2, white,[],[],[],1.2);
+            DrawFormattedText(theWindow, double('ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½\n   ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½'), rb2-scale_H/0.7, H*(1/2)+scale_H/1.2, white,[],[],[],1.2);
             Screen('DrawLine', theWindow, orange, x, H*(1/2)-scale_H/3, x, H*(1/2)+scale_H/3, 6); %rating bar
             Screen('Flip', theWindow);
             
@@ -328,7 +328,7 @@ try
     if run
         
         while true % Start, Space
-            msgtxt = '\n½ÇÇèÀÚ´Â ¸ðµç °ÍÀÌ Àß ÁØºñµÇ¾ú´ÂÁö Ã¼Å©ÇØÁÖ¼¼¿ä (Biopac, Eyelink, µîµî).\n\n¸ðµÎ ÁØºñµÇ¾úÀ¸¸é, ½ºÆäÀÌ½º¹Ù¸¦ ´­·¯ÁÖ¼¼¿ä.';
+            msgtxt = '\nï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Øºï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½ (Biopac, Eyelink, ï¿½ï¿½ï¿½).\n\nï¿½ï¿½ï¿½ ï¿½Øºï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.';
             DrawFormattedText(theWindow, double(msgtxt), 'center', 'center', white, [], [], [], 2);
             Screen('Flip', theWindow);
             
@@ -342,7 +342,7 @@ try
         end
         
         while true % Ready, s
-            msgtxt = '½ÃÀÛÇÕ´Ï´Ù...';
+            msgtxt = 'ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½...';
             DrawFormattedText(theWindow, double(msgtxt), 'center', 'center', white, [], [], [], 2);
             Screen('Flip', theWindow);
             
@@ -391,7 +391,7 @@ try
             Screen(theWindow, 'FillRect', bgcolor, window_rect);
               
               data_num = size(filenames(fullfile(basedir,['Data/*' char(type) '.mat'])),1);
-              data_num = data_num - size(filenames(fullfile(basedir,['Data/*' sprintf('PLS%.3d',SubjNum) '*' char(type) '.mat'])),1);
+              data_num = data_num - size(filenames(fullfile(basedir,['Data/*' sprintf('PLST%.3d',SubjNum) '*' char(type) '.mat'])),1);
               
                
               if isequal(char(type),'RE')
@@ -509,7 +509,7 @@ try
         scales = rating_types_pls.postalltypes{ratestim};
         
         Screen(theWindow, 'FillRect', bgcolor, window_rect);
-        msgtxt = [num2str(SubjRun) '¹øÂ° ¼¼¼ÇÀÌ ³¡³µ½À´Ï´Ù.\n\nÀá½Ã ÈÄ Áú¹®µéÀÌ Á¦½ÃµÉ °ÍÀÔ´Ï´Ù. Âü°¡ÀÚºÐ²²¼­´Â ±â´Ù·ÁÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.'];
+        msgtxt = [num2str(SubjRun) 'ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.\n\nï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ÚºÐ²ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ù·ï¿½ï¿½Ö½Ã±ï¿½ ï¿½Ù¶ï¿½ï¿½Ï´ï¿½.'];
         msgtxt = double(msgtxt);
         DrawFormattedText(theWindow, msgtxt, 'center', 'center', white, [], [], [], 2);
         Screen('Flip', theWindow);
@@ -585,7 +585,7 @@ try
             end
             
             if scale_i == numel(scales)
-                msgtxt = 'Áú¹®ÀÌ ³¡³µ½À´Ï´Ù.';
+                msgtxt = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.';
                 msgtxt = double(msgtxt); % korean to double
                 DrawFormattedText(theWindow, msgtxt, 'center', 'center', white, [], [], [], 2);
                 Screen('Flip', theWindow);
@@ -628,7 +628,7 @@ try
                 break
             end
             
-            msgtxt = [num2str(SubjRun) '¹øÂ° ¼¼¼ÇÀÌ ³¡³µ½À´Ï´Ù.\n\n¼¼¼ÇÀ» ¸¶Ä¡·Á¸é, ½ÇÇèÀÚ´Â ½ºÆäÀÌ½º¹Ù¸¦ ´­·¯ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.'];
+            msgtxt = [num2str(SubjRun) 'ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö½Ã±ï¿½ ï¿½Ù¶ï¿½ï¿½Ï´ï¿½.'];
             msgtxt = double(msgtxt); % korean to double
             DrawFormattedText(theWindow, msgtxt, 'center', 'center', white, [], [], [], 2);
             Screen('Flip', theWindow);
