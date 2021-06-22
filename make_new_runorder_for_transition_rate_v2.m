@@ -15,6 +15,7 @@ func_tasks{66} = {'CC','CS','RE','C0','SS'};
 func_tasks{67} = {'CC','RE','CS','SS','C0'};
 func_tasks{68} = {'RE','SS','CS','CC','C0'};
 func_tasks{69} = {'SS','RE','CC','C0','CS'};
+func_tasks{70} = {'RE','CS','CC','SS','C0'};
 
 %%
 
@@ -43,6 +44,6 @@ load('Pleasure2_randomized_run_data_final2.mat');
 new_runs_randomized2(1,:) = {'CC','RE','CS','SS','C0'};
 new_runs_randomized2(2,:) = {'RE','SS','CS','CC','C0'};
 new_runs_randomized2(3,:) = {'SS','RE','CC','C0','CS'};
+new_runs_randomized2(4,:) = {'RE','CS','CC','SS','C0'};
 
 save('Pleasure2_randomized_run_data_final2_new.mat','new_runs_randomized2','-append');
-
